@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6tiretu41mul"]
+
+[ext_resource type="Texture2D" uid="uid://c00amj4bsfub6" path="res://Assets/Sprites/tileset.png" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://bwb0a3t0k4a3m" path="res://Scenes/player.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://wmyc2w6essw0" path="res://Scenes/enemy.tscn" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://bcnsnwmo87qg3" path="res://Scripts/world_generator.gd" id="3_kry3j"]
+[ext_resource type="PackedScene" uid="uid://c4vhvsho7q5ik" path="res://Scenes/tree_1.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cy4avg3o64mo2" path="res://Scenes/tree_2.tscn" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://bhcmy88qhdev7" path="res://Scenes/tree_3.tscn" id="8_344ge"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jjvhh"]
+texture = ExtResource("1_8gbba")
+0:0/0 = 0
+0:0/0/probability = 0.2
+1:0/0 = 0
+1:0/0/probability = 0.2
+3:0/0 = 0
+3:0/0/probability = 0.2
+0:1/0 = 0
+0:1/0/probability = 0.2
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+2:0/0 = 0
+2:0/0/probability = 0.05
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kry3j"]
+sources/0 = SubResource("TileSetAtlasSource_jjvhh")
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("3_kry3j")
+tree_1_scene = ExtResource("6_21xkr")
+tree_2_scene = ExtResource("7_6bp64")
+tree_3_scene = ExtResource("8_344ge")
+
+[node name="Player" parent="." instance=ExtResource("1_bo1nx")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -2
+tile_set = SubResource("TileSet_kry3j")
+
+[node name="Enemy" parent="." instance=ExtResource("2_8gbba")]
