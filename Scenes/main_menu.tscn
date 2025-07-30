@@ -100,7 +100,7 @@ theme_override_font_sizes/font_size = 30
 text = "WASD to move
 Mouse/Spacebar to attack
 Controller D-pad or left joystick to move and X to attack
-All music and art by Santeri Kw"
+All music and art by Santeri K"
 
 [node name="FastestTime" type="Label" parent="."]
 layout_mode = 1
