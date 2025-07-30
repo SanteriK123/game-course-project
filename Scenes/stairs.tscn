@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://btorgfxvlw35d"]
+
+[ext_resource type="Texture2D" uid="uid://rotojycavc3b" path="res://Assets/Sprites/stairs.png" id="1_aiuvb"]
+[ext_resource type="Script" uid="uid://iyasecw5lmq5" path="res://Scripts/stairs.gd" id="1_qbift"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_aiuvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aiuvb"]
+size = Vector2(0.46379, 64.5521)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tl8cb"]
+size = Vector2(5.42608, 0.745671)
+
+[node name="Stairs" type="StaticBody2D"]
+collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_aiuvb")
+script = ExtResource("1_qbift")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aiuvb")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 32)
+shape = SubResource("RectangleShape2D_aiuvb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(31, 32)
+shape = SubResource("RectangleShape2D_aiuvb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(16, 6.52108e-09)
+rotation = -1.56801
+scale = Vector2(1, 0.47933)
+shape = SubResource("RectangleShape2D_aiuvb")
+
+[node name="ExitArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+position = Vector2(16, 4)
+scale = Vector2(4.79167, -5.36429)
+shape = SubResource("RectangleShape2D_tl8cb")
+
+[connection signal="body_entered" from="ExitArea" to="." method="_on_exit_area_body_entered"]

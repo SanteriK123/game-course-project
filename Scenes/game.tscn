@@ -1,0 +1,48 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6tiretu41mul"]
+
+[ext_resource type="Script" uid="uid://bcnsnwmo87qg3" path="res://Scripts/game_manager.gd" id="1_ldgsr"]
+[ext_resource type="PackedScene" uid="uid://wmyc2w6essw0" path="res://Scenes/sewer_monster.tscn" id="5_1phco"]
+[ext_resource type="PackedScene" uid="uid://cpgqxyo8yckyx" path="res://Scenes/rat.tscn" id="6_nb51f"]
+[ext_resource type="PackedScene" uid="uid://btorgfxvlw35d" path="res://Scenes/stairs.tscn" id="7_nnt18"]
+[ext_resource type="PackedScene" uid="uid://u21ky5wtmehd" path="res://Scenes/giant_rat.tscn" id="7_o5yvi"]
+[ext_resource type="PackedScene" uid="uid://bwb0a3t0k4a3m" path="res://Scenes/player.tscn" id="8_ewbju"]
+[ext_resource type="PackedScene" uid="uid://chxjkuanl51wo" path="res://Scenes/boss.tscn" id="8_rku1e"]
+[ext_resource type="TileSet" uid="uid://ccrbmrdhg4glk" path="res://Resources/tiles.tres" id="9_85qyi"]
+[ext_resource type="PackedScene" uid="uid://bw4uha1h1x0cb" path="res://Scenes/user_interface.tscn" id="10_iivbl"]
+[ext_resource type="Shader" uid="uid://75uenqpjfc0e" path="res://Scripts/game.gdshader" id="10_ldgsr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5yvi"]
+render_priority = 0
+shader = ExtResource("10_ldgsr")
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_ldgsr")
+swamp_monster_scene = ExtResource("5_1phco")
+rat_scene = ExtResource("6_nb51f")
+giant_rat_scene = ExtResource("7_o5yvi")
+boss_scene = ExtResource("8_rku1e")
+stairs_scene = ExtResource("7_nnt18")
+
+[node name="Player" parent="." instance=ExtResource("8_ewbju")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = -2
+tile_set = ExtResource("9_85qyi")
+
+[node name="UserInterface" parent="." instance=ExtResource("10_iivbl")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_o5yvi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

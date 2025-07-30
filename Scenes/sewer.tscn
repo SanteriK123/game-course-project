@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://baw3ab0ug4qrj"]
+
+[ext_resource type="TileSet" uid="uid://ccrbmrdhg4glk" path="res://Resources/tiles.tres" id="1_b303j"]
+
+[node name="Sewer" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(5.25829, 5.87508)
+tile_set = ExtResource("1_b303j")
