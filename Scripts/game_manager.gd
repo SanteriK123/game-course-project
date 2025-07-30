@@ -14,7 +14,7 @@ extends Node
 @onready var time = $UserInterface/HBoxContainer/Time
 
 # Level variables
-var level: int = 4
+var level: int = 1
 var steps: int = 100
 var world_size: int = 40
 var stairs: Node = null
@@ -213,12 +213,14 @@ func generate_surface_level():
 func _on_enemy_dead(enemy: Enemy) -> void:
 	if enemy in enemies:
 		if enemy.is_in_group("boss"):
-			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+			call_deferred("change_to_main_menu")
 			var previous_best = load_from_file()
 			if previous_best == 0 or float(time.text) < previous_best:
 				save_to_file(time.text)
 		enemies.erase(enemy)
-
+func change_to_main_menu() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	
 func save_to_file(content: String) -> void:
 	var file = FileAccess.open("user://best_time.dat", FileAccess.WRITE)
 	file.store_string(content)

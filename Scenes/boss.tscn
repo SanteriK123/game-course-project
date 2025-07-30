@@ -77,7 +77,7 @@ scale = Vector2(0.994762, 0.994435)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_wwfse")
-maxHp = 12
+maxHp = 120
 speed = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

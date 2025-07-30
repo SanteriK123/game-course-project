@@ -10,7 +10,6 @@ func _ready() -> void:
 	game_ref.all_enemies_killed.connect(_on_all_enemies_killed)
 
 func _on_level_finished() -> void:
-	print(game_ref.level)
 	level_label.text = "Level: " + str(game_ref.level)
 	level_cleared_text.visible = false
 
