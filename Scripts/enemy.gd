@@ -62,7 +62,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		state = EnemyState.ATTACK
 		target_player = body
-
+	
 func _on_hit_flash_timer_timeout() -> void:
 	sprite.modulate = Color.WHITE
 

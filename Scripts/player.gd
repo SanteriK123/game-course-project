@@ -11,6 +11,8 @@ enum PlayerState { IDLE, WALK, ATTACK }
 var state: PlayerState = PlayerState.IDLE
 var idle_direction = Vector2(0, -1)
 var last_walk_direction := Vector2.ZERO
+var is_taking_damage: bool = false
+var iframe_counter: int = 0
 
 # Signals
 signal took_damage
@@ -68,6 +70,11 @@ func _physics_process(delta: float) -> void:
 				state = PlayerState.IDLE
 				play_idle_animation()
 			last_walk_direction = Vector2.ZERO
+			
+	if iframe_counter % 60 == 0 and is_taking_damage:
+		take_damage()
+	
+	iframe_counter += 1
 
 func play_attack_animation() -> void:
 	sword_animate_node.stop()
@@ -138,9 +145,12 @@ func die():
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.take_damage(damage)
-	pass # Replace with function body.
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	iframe_counter = 0
 	if body is Enemy:
-		take_damage()
-	pass # Replace with function body.
+		is_taking_damage = true
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body is Enemy:
+		is_taking_damage = false
